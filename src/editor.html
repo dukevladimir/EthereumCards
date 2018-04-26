@@ -1,71 +1,69 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<title>CardGame</title>
-
-        <!-- Bootstrap -->
+  <head>
+    <title>CardGame</title>
+    <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
-
-</head>
-<body>
-
-      <div class="container">
+  </head>
+  <body>
+    <div class="container">
       <div class="row">
         <div class="col-xs-12 col-sm-8 col-sm-push-2">
-          <h1 class="text-center">Create new cards</h1>
+          <h1 class="text-center">Card Editor</h1>
           <hr/>
           <br/>
         </div>
       </div>
-
-<a href="index.html">Main page</a>
-<a href="editor.html">Editor</a>
-<a href="collection.html">Collection</a>
-
-<br></br>
-
-    <div class="col-sm-6 col-md-4 col-lg-3">
-      <div class="panel panel-default panel-pet">
-        <div class="panel-heading">
-
-<h3>Create New Card</h3>
-<br>
-
-<form>
-  Card name:<br>
-  <input type="text" class="card_name">
-  <br>
-
-  <!-- load image-->
-  
-  Power:<br>
-  <input type="text" class="power">
-  <br>
-  
-  Health:<br>
-  <input type="text" class="health">
-  <br>
-
-  Attributes (in json format):<br>
-  <input type="text" class="meta">
-  <br>
-
-  <br><br>
-  <input type="submit" value="Submit" class="btn-create">
-</form> 
-
-</div>
-</div>
-</div>
-
-
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/web3.min.js"></script>
-    <script src="js/truffle-contract.js"></script>
-    <script src="js/app.js"></script>
-
-</body>
-</html>
+      <nav class="navbar navbar-default">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <a class="navbar-brand" >CardGame</a>
+          </div>
+          <ul class="nav navbar-nav">
+            <li><a href="index.html">Encyclopedia</a></li>
+            <li class="active"><a class="active" href="editor.html">Card Editor</a></li>
+            <li><a href="collection.html">My Cards</a></li>
+          </ul>
+        </div>
+      </nav>
+      <br></br>
+      <div class="col-sm-6 col-md-4 col-lg-3">
+        <div class="panel panel-default panel-pet">
+          <div class="panel-heading">
+            <h3>Create New Card</h3>
+            <br>
+            <form>
+              Card name:<br>
+              <input type="text" class="card_name">
+              <br>
+              <!-- load image-->
+              
+              Power:<br>
+              <input type="text" class="power">
+              <br>
+              
+              Health:<br>
+              <input type="text" class="health">
+              <br>
+              IPFS Hash of image:<br>
+              <input type="text" class="ipfs-hash">
+              <br>
+              Attributes (in json format):<br>
+              <input type="text" class="meta">
+              <br>
+              <br><br>
+              <input type="submit" value="Submit" class="btn-create">
+            </form>
+          </div>
+        </div>
+      </div>
+      
+      <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+      <!-- Include all compiled plugins (below), or include individual files as needed -->
+      <script src="js/bootstrap.min.js"></script>
+      <script src="js/web3.min.js"></script>
+      <script src="js/truffle-contract.js"></script>
+      <script src="js/app.js"></script>
+    </body>
+  </html>

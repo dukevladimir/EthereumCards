@@ -6,18 +6,6 @@ App = {
       
       console.log("init");
 
-      //var CardsLoad = $('#CardsLoad');
-      //var CardTemplate = $('#CardTemplate');
-
-      //  CardTemplate.find('.card-title').text("My first card");
-      //  CardTemplate.find('img').attr('src', "./images/default.png");
-      //  CardTemplate.find('.Power').text("2");
-      //  CardTemplate.find('.Health').text("3");
-
-      //  CardsLoad.append(CardTemplate.html());
-      
-
-    //return App.initWeb3();
     App.initWeb3(); // which initialises the contract
     var ids = App.getCardIds();
 
@@ -38,13 +26,24 @@ App = {
         ids = result.map(Number) 
         var InsertHere = $('#insert_here');
         var CardTemplate = $('#CardTemplate');
-          for (var i = 0; i <ids.length; i++) {
-            CardTemplate.find('.card-title').text(ids[i]);
-            CardTemplate.find('.img').attr('src',"./images/default.png");
-            CardTemplate.find('.Power').text("4");
-            CardTemplate.find('.Health').text("5");
+          
+          // Loop through each card id in the contract and draw to the screen
 
-            InsertHere.append(CardTemplate.html());
+          for (var i = 0; i <ids.length; i++) {
+
+            var tmp = i;
+            var attrs = CardGameInstance.getCardById.call(ids[i]).then(function(result){
+
+              CardTemplate.find('.card-title').text(result[0]);
+              CardTemplate.find('.pic').attr('src',"https://ipfs.io/ipfs/".concat(result[4]))  
+              CardTemplate.find('.Power').text(Number(result[1]));
+              CardTemplate.find('.Health').text(Number(result[2]));
+              CardTemplate.find('.btn').attr('data-id',result[0]);
+
+              InsertHere.append(CardTemplate.html());
+
+            });
+
           }
           return ids;
         });  
@@ -92,21 +91,49 @@ App = {
 
 
   bindEvents: function() {
+    console.log("Bind events running");
     $(document).on('click', '.btn-create', App.handleCreate);
-    console.log("clicked");
+    $(document).on('click', '.btn-issue', App.handleIssue);
+    
+  },
+
+  handleIssue: function(event){
+
+    console.log("issue");
+
+    var cardId = $(event.target).attr('data-id');
+    console.log(cardId);
+
+     web3.eth.getAccounts(function(error, accounts) {
+      if (error) {
+        console.log(error);
+      }
+
+      var account = accounts[0];
+
+      App.contracts.CardGame.deployed().then(function(instance) {
+        CardGameInstance = instance;
+
+        // Issue cards to owners
+        return CardGameInstance.PrintCards(cardId,1);
+      
+      }).catch(function(err) {
+        console.log(err.message);
+      });
+    });   
+
   },
 
 
   handleCreate: function(event) {
-    
-    console.log("clicked");
-    
     event.preventDefault();
-
+    console.log("clicked");    
+    
     var CardTitle = $(".card_name").val();
     var Power = parseInt($(".power").val());
     var Health = parseInt($(".health").val());
     var Meta = $(".meta").val();
+    var IPFS = $(".ipfs-hash").val();
 
     var CardGameInstance;
 
@@ -125,9 +152,10 @@ App = {
         console.log(Power);
         console.log(Health);
         console.log(Meta);
+        console.log(IPFS);
 
         // Execute adopt as a transaction by sending account
-        return CardGameInstance.CreateCard(CardTitle,Power,Health,Meta);
+        return CardGameInstance.CreateCard(CardTitle,Power,Health,Meta,IPFS);
       
       }).catch(function(err) {
         console.log(err.message);

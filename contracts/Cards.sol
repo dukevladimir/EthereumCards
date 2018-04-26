@@ -27,6 +27,7 @@ contract CardGame is Owned {
 		uint power; // power
 		uint health; // health
 		string meta; // a json format string - used to hold complex card definitions and js readable
+		string ipfs; // a string containing the ipfs hash of the image location
 	}
 
 
@@ -51,7 +52,8 @@ contract CardGame is Owned {
 	*	Collection of cards struct
 	*/ 
 	struct Collection{
-		mapping(uint => uint) collection;
+		mapping(uint => uint) collection; // for each card id, the number of cards held
+		uint[] ids; // non unique list of card ids held. Will sort out uniqueness in javascript
 	}
 
 
@@ -64,7 +66,8 @@ contract CardGame is Owned {
 	/**
 	*	Print cards and give them to the owner
 	*/
-	function PrintCards(uint id,uint quantity) public OwnerOnly{
+	function PrintCards(string name,uint quantity) public OwnerOnly{
+		uint id = names[name];
 		holdings[owner].collection[id] += quantity;
 	}
 
@@ -101,9 +104,10 @@ contract CardGame is Owned {
 			string _name,
 			uint _power,
 			uint _health,
-			string _meta) public OwnerOnly {
+			string _meta,
+			string _ipfs) public OwnerOnly {
 
-		cards[next_id] = Card(_name,_power,_health,_meta);
+		cards[next_id] = Card(_name,_power,_health,_meta,_ipfs);
 		ids.push(next_id);
 		names[_name] = next_id;
 		next_id++;
@@ -114,14 +118,14 @@ contract CardGame is Owned {
 	/**
 	* 	Get card by id
 	*/
-	function getCardById(uint id) public view returns (string,uint,uint,string) {
-		return (cards[id].name,cards[id].power,cards[id].health,cards[id].meta);
+	function getCardById(uint id) public view returns (string,uint,uint,string,string) {
+		return (cards[id].name,cards[id].power,cards[id].health,cards[id].meta,cards[id].ipfs);
 	}
 
 	/**
 	*	Get card by name
 	*/
-	function getCardByName (string name) public view returns (string,uint,uint,string) {
+	function getCardByName (string name) public view returns (string,uint,uint,string,string) {
 		uint id = names[name];
 		return getCardById(id);
 	}
@@ -136,8 +140,19 @@ contract CardGame is Owned {
 
 
 	/**
-	*  Delete card
+	*  Get holdings ids
 	*/
+	function getHoldings(address user) public view returns (uint[]){
+		return holdings[user].ids;
+	}
+
+	/**
+	*	Get holding of card id
+	*/
+	function getHoldingForId(address user,uint id) public view returns (uint){
+		return holdings[user].collection[id];
+	}
+
 
 }
 

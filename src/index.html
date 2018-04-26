@@ -1,76 +1,69 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<title>CardGame</title>
-
-	    <!-- Bootstrap -->
+  <head>
+    <title>CardGame</title>
+    <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
-
-
-</head>
-<body>
-
-
-    <div class="container">
+  </head>
+  <body>
+    <div class="container" style="width:1600px;">
       <div class="row">
         <div class="col-xs-12 col-sm-8 col-sm-push-2">
-          <h1 class="text-center">Card Game Editor</h1>
+          <h1 class="text-center">Card Encyclopedia</h1>
           <hr/>
           <br/>
         </div>
       </div>
-
-
-<a href="index.html">Main page</a>
-<a href="editor.html">Editor</a>
-<a href="collection.html">Collection</a>
-
-<br></br>
-
-<div id="CardsLoad" class="row">
-	<!-- Cards are loaded here -->
-</div>
-
-	<!-- template to duplicate for all defined cards-->
-	<div id="CardTemplate" style="display: none;">
-		
-    <div class="col-sm-6 col-md-4 col-lg-3">
-      <div class="panel panel-default panel-pet">
-        <div class="panel-heading">
-
-      	<h3 class="card-title">MyCard </h3>
-      	
-      	<div class="panel-body">
-      		<img src="./images/default.png">
-      		<table class="table table-bordered">
-      			<tr>
-      				<td>Power</td>
-      				<td class="Power"></td>
-      			</tr>
-      			<tr>
-      				<td>Health</td>
-      				<td class="Health"></td>
-      			</tr>
-
-      		</table>
-      		<!--<div class="Power">Power X</div>-->
-      		<!--<div class="Health">Health X</div>-->
-    		</div>
+      <nav class="navbar navbar-default">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <a class="navbar-brand" >CardGame</a>
+          </div>
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="index.html">Encyclopedia</a></li>
+            <li><a href="editor.html">Card Editor</a></li>
+            <li><a href="collection.html">My Cards</a></li>
+          </ul>
         </div>
-
-    </div>
-    </div>
-	</div>
-
-	<div id="insert_here"></div>
-
-	
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/web3.min.js"></script>
-    <script src="js/truffle-contract.js"></script>
-    <script src="js/app.js"></script>
-</body>
-</html>
+      </nav>
+      <br></br>
+      <div id="CardsLoad" class="row">
+        <!-- Cards are loaded here -->
+      </div>
+      <!-- template to duplicate for all defined cards-->
+      <div id="CardTemplate" style="display: none;">
+        
+        <div class="col-sm-6 col-md-4 col-lg-3">
+          <div class="panel panel-default panel-pet">
+            <div class="panel-heading">
+              <h3 class="card-title">MyCard </h3>
+              
+              <div class="panel-body">
+                <img class="pic" src="https://ipfs.io/ipfs/QmW9WQGZgwHRXbCg5T6JKeDZcZ9RSAjTG4EXPuZeHgR8Re">
+                <table class="table table-bordered">
+                  <tr>
+                    <td>Power</td>
+                    <td class="Power"></td>
+                  </tr>
+                  <tr>
+                    <td>Health</td>
+                    <td class="Health"></td>
+                  </tr>
+                </table>
+                <button class="btn btn-default btn-issue" type="button" data-id="0">Generate new cards</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="insert_here"></div>
+      
+      <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+      <!-- Include all compiled plugins (below), or include individual files as needed -->
+      <script src="js/bootstrap.min.js"></script>
+      <script src="js/web3.min.js"></script>
+      <script src="js/truffle-contract.js"></script>
+      <script src="js/app.js"></script>
+    </body>
+  </html>

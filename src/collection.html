@@ -1,37 +1,52 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>CardGame</title>
-
-        <!-- Bootstrap -->
+  <head>
+    <title>CardGame</title>
+    <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
-
-</head>
-<body>
-
-      <div class="container">
+  </head>
+  <body>
+    <div class="container">
       <div class="row">
         <div class="col-xs-12 col-sm-8 col-sm-push-2">
-          <h1 class="text-center">My Collection</h1>
+          <h1 class="text-center">My Cards</h1>
           <hr/>
           <br/>
         </div>
       </div>
-
-<a href="index.html">Main page</a>
-<a href="editor.html">Editor</a>
-<a href="collection.html">Collection</a>
-
-
-
-
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/web3.min.js"></script>
-    <script src="js/truffle-contract.js"></script>
-    <script src="js/app.js"></script>
-
-</body>
-</html>
+      <nav class="navbar navbar-default">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <a class="navbar-brand" >CardGame</a>
+          </div>
+          <ul class="nav navbar-nav">
+            <li><a href="index.html">Encyclopedia</a></li>
+            <li><a href="editor.html">Card Editor</a></li>
+            <li class="active"><a href="collection.html">My Cards</a></li>
+          </ul>
+        </div>
+      </nav>
+      <div class="col-sm-6 col-md-4 col-lg-3">
+        <div class="panel panel-default panel-pet">
+          <div class="panel-heading">
+            <div class="panel-body">
+              <table class="table table-bordered">
+                <thead class = "add_collection_here">
+                  <tr>
+                    <th>Card</th>
+                    <th>Quantity</th>
+                  </tr>
+                </thead>
+              </table>
+            </div>
+          </div>
+        </div>
+        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <!-- Include all compiled plugins (below), or include individual files as needed -->
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/web3.min.js"></script>
+        <script src="js/truffle-contract.js"></script>
+        <script src="js/app.js"></script>
+      </body>
+    </html>
